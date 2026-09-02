@@ -46,7 +46,7 @@ class Undead:
             print('already at max level')
             return False
 
-        self__level += 1
+        self.__level += 1
         self.__health = min(self.__health + self.HEALTH_PER_LEVEL, self.MAX_HEALTH)
         self.__power = min(self.__power + self.POWER_PER_LEVEL, self.MAX_POWER)
         return True
@@ -54,6 +54,17 @@ class Undead:
     def __str__(self):
         return (f'Unit id = {self.unit_id}\n'
                 f'Name = {self.name}\n'
-                f'Health = {self.health}'
-                f'Power = {self.power}'
-                f'Level = {self.level}')
+                f'Health = {self.health}\n'
+                f'Power = {self.power}\n'
+                f'Level = {self.level}\n')
+
+u = Undead(1, "Skeleton Warrior")
+print(u)
+
+u.level_up()
+print(u)
+
+u.level_up()
+print(u)
+
+print(u.health)
