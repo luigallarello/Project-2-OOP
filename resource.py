@@ -116,12 +116,26 @@ class Resource:
             return True
 
     def __str__(self):
-        return (f"Available resources:"
-                f"Necrotic Runes = {self.necrotic_rune}"
-                f"Spirit Runes = {self.spirit_rune}"
-                f"Bone Runes = {self.bone_rune}"
-                f"Flesh Runes = {self.flesh_rune}"
-                f"Ectoplasm = {self.ectoplasm}")
+        return (f"Available resources:\n"
+                f"Necrotic Runes = {self.necrotic_rune}\n"
+                f"Spirit Runes = {self.spirit_rune}\n"
+                f"Bone Runes = {self.bone_rune}\n"
+                f"Flesh Runes = {self.flesh_rune}\n"
+                f"Ectoplasm = {self.ectoplasm}\n")
+    
+
+r = Resource(5, 3, 4, 2, 10)
+print(r)
+
+r.collect_resource(bone_rune=3, ectoplasm=5)
+print(r)
+
+r.spend_resource(necrotic_rune=2)
+print(r)
+
+print(r.bone_rune)
+
+    
 
 
             
