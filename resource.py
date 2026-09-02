@@ -51,44 +51,46 @@ class Resource:
 
 
     def collect_resource(self, necrotic_rune=0, spirit_rune=0, bone_rune=0, flesh_rune=0, ectoplasm=0):
-        amounts = {
-            "necrotic_rune": necrotic_rune,
-            "spirit_rune": spirit_rune,
-            "bone_rune": bone_rune,
-            "flesh_rune": flesh_rune,
-            "ectoplasm": ectoplasm,
-            }
+        if (isinstance(necrotic_rune, int) and necrotic_rune >= self.MIN_QUANTITY and
+            isinstance(spirit_rune, int) and spirit_rune >= self.MIN_QUANTITY and
+            isinstance(bone_rune, int) and bone_rune >= self.MIN_QUANTITY and
+            isinstance(flesh_rune, int) and flesh_rune >= self.MIN_QUANTITY and
+            isinstance(ectoplasm, int) and ectoplasm >= self.MIN_QUANTITY):
 
-        # Step 1: validate everything first, change nothing yet
-        for name, value in amounts.items():
-            if not (isinstance(value, int) and value >= self.MIN_QUANTITY):
-                print(f"invalid quantity for {name}")
-                return False
-
-        # Step 2: all valid, now safe to apply changes
-        self.set_necrotic_rune(self.__necrotic_rune + necrotic_rune)
-        self.set_spirit_rune(self.__spirit_rune + spirit_rune)
-        self.set_bone_rune(self.__bone_rune + bone_rune)
-        self.set_flesh_rune(self.__flesh_rune + flesh_rune)
-        self.set_ectoplasm(self.__ectoplasm + ectoplasm)
-
-        return True 
+            self.set_necrotic_rune(self.__necrotic_rune + necrotic_rune)
+            self.set_spirit_rune(self.__spirit_rune + spirit_rune)
+            self.set_bone_rune(self.__bone_rune + bone_rune)
+            self.set_flesh_rune(self.__flesh_rune + flesh_rune)
+            self.set_ectoplasm(self.__ectoplasm + ectoplasm)
+            return True
+        else:
+            print("invalid resource quantity supplied")
+            return False
 
     def check_requirements(self, necrotic_rune=0, spirit_rune=0, bone_rune=0, flesh_rune=0, ectoplasm=0):
-        required = {
-            "necrotic_rune": (necrotic_rune, self.__necrotic_rune),
-            "spirit_rune": (spirit_rune, self.__spirit_rune),
-            "bone_rune": (bone_rune, self.__bone_rune),
-            "flesh_rune": (flesh_rune, self.__flesh_rune),
-            "ectoplasm": (ectoplasm, self.__ectoplasm),
-            }
+        if (necrotic_rune <= self.__necrotic_rune and
+            spirit_rune <= self.__spirit_rune and
+            bone_rune <= self.__bone_rune and
+            flesh_rune <= self.__flesh_rune and
+            ectoplasm <= self.__ectoplasm):
+            return True
+        else:
+            print("not enough resources")
+            return False
 
-        for name, (needed, available) in required.items():
-            if needed > available:
-                print(f"not enough {name}")
-                return False
+    def spend_resource(self, necrotic_rune=0, spirit_rune=0, bone_rune=0, flesh_rune=0, ectoplasm=0):
+        if not self.check_requirements(necrotic_rune, spirit_rune, bone_rune, flesh_rune, ectoplasm):
+            return False
+        
+        else:
+            self.set_necrotic_rune(self.__necrotic_rune - necrotic_rune)
+            self.set_spirit_rune(self.__spirit_rune - spirit_rune)
+            self.set_bone_rune(self.__bone_rune - bone_rune)
+            self.set_flesh_rune(self.__flesh_rune - flesh_rune)
+            self.set_ectoplasm(self.__ectoplasm - ectoplasm)
+            return True
+            
 
-        return True
             
 
     
