@@ -1,6 +1,5 @@
 class Undead:
     MAX_LEVEL = 100
-    MAX_LEVEL = 100
     MIN_HEALTH = 0
     MAX_HEALTH = 100
     MIN_POWER = 1
@@ -8,12 +7,12 @@ class Undead:
 
     HEALTH_PER_LEVEL = 2
     POWER_PER_LEVEL = 4
-    
-    def __init__(self, unit_id, name):
+
+    def __init__(self, unit_id, name, min_health, min_power):
         self.__unit_id = unit_id
         self.__name = name
-        self.__health = self.MIN_HEALTH
-        self.__power = self.MIN_POWER
+        self.__health = min_health
+        self.__power = min_power
         self.__level = 1
 
     def get_unit_id(self):
@@ -54,17 +53,16 @@ class Undead:
     def __str__(self):
         return (f'Unit id = {self.unit_id}\n'
                 f'Name = {self.name}\n'
-                f'Health = {self.health}\n'
-                f'Power = {self.power}\n'
+                f'Health = {self.health}/{self.MAX_HEALTH}\n'
+                f'Power = {self.power}/{self.MAX_POWER}\n'
                 f'Level = {self.level}\n')
 
-u = Undead(1, "Skeleton Warrior")
-print(u)
+u_1= Undead(1, " Undead Skeleton Warrior")
 
-u.level_up()
-print(u)
+# print(u_1)
 
-u.level_up()
-print(u)
+# u_1.level_up()
+# print(u)
 
-print(u.health)
+# u_1.level_up()
+# print(u)

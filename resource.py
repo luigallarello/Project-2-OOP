@@ -124,16 +124,16 @@ class Resource:
                 f"Ectoplasm = {self.ectoplasm}\n")
     
 
-r = Resource(5, 3, 4, 2, 10)
-print(r)
+# r = Resource(5, 3, 4, 2, 10)
+# print(r)
 
-r.collect_resource(bone_rune=3, ectoplasm=5)
-print(r)
+# r.collect_resource(bone_rune=3, ectoplasm=5)
+# print(r)
 
-r.spend_resource(necrotic_rune=2)
-print(r)
+# r.spend_resource(necrotic_rune=2)
+# print(r)
 
-print(r.bone_rune)
+# print(r.bone_rune)
 
     
 
