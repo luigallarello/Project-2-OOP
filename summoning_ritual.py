@@ -105,8 +105,12 @@ class SummoningRitual:
             print("invalid resource object")
             return False
 
-    def create_undead(self, unit_id):
-        return Undead(unit_id, self.undead_name, self.starting_health, self.starting_power)
+    def create_undead(self, unit_id, resource):
+        if self.consume_resources(resource) and self.check_ritual(resource) == True:
+            return Undead(unit_id, self.undead_name, self.starting_health, self.starting_power)
+        else:
+            print (f'Cannot create undead, requirements not met')
+            return False
 
 
 ritual = SummoningRitual("Undead Skeleton Warrior", "Skeleton Warrior", 20, 10, bone_cost=5, ectoplasm_cost=3)

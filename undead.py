@@ -57,7 +57,7 @@ class Undead:
                 f'Power = {self.power}/{self.MAX_POWER}\n'
                 f'Level = {self.level}\n')
 
-u_1= Undead(1, " Undead Skeleton Warrior")
+# u_1= Undead(1, " Undead Skeleton Warrior")
 
 # print(u_1)
 
