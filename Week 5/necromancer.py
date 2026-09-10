@@ -30,7 +30,7 @@ class Necromancer():
 
 
     def collect_resource(self, necrotic_rune, spirit_rune, bone_rune, flesh_rune, ectoplasm):
-        self.__resource.collect_resource(necrotic_rune, spirit_rune, bone_rune, flesh_rune, ectoplasm``)
+        self.__resource.collect_resource(necrotic_rune, spirit_rune, bone_rune, flesh_rune, ectoplasm)
 
     def summon(self, ritual):
         if not isinstance(ritual, SummoningRitual):
