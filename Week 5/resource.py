@@ -2,21 +2,29 @@ class Resource:
     MIN_QUANTITY = 0
 
     def __init__(self, necrotic_rune, spirit_rune, bone_rune, flesh_rune, ectoplasm):
-        self.__necrotic_rune = self.set_necrotic_rune(necrotic_rune)
-        self.__spirit_rune = self.set_spirit_rune(spirit_rune)
-        self.__bone_rune = self.set_bone_rune(bone_rune)
-        self.__flesh_rune = self.set_flesh_rune(flesh_rune)
-        self.__ectoplasm = self.set_ectoplasm(ectoplasm)
+        self.set_necrotic_rune(necrotic_rune)
+        self.set_spirit_rune(spirit_rune)
+        self.set_bone_rune(bone_rune)
+        self.set_flesh_rune(flesh_rune)
+        self.set_ectoplasm(ectoplasm)
+
+
+
+    def validate_resource(self, value):
+        if isinstance(value, int) and value >= self.MIN_QUANTITY:
+            return True
+        else:
+            print('invalid resource quantity')
+            return False
 
     def get_necrotic_rune(self):
         return self.__necrotic_rune
     
     def set_necrotic_rune(self, value):
-        if isinstance(value, int) and value >= self.MIN_QUANTITY:
+        if self.validate_resource(value):
             self.__necrotic_rune = value
             return self.__necrotic_rune
         else:
-            print("invalid necrotic rune quantity")
             return None
 
     necrotic_rune = property(get_necrotic_rune)
@@ -25,11 +33,10 @@ class Resource:
         return self.__spirit_rune
 
     def set_spirit_rune(self, value):
-        if isinstance(value, int) and value >= self.MIN_QUANTITY:
+        if self.validate_resource(value):
             self.__spirit_rune = value
             return self.__spirit_rune
         else:
-            print("invalid spirit rune quantity")
             return None
 
     spirit_rune = property(get_spirit_rune)
@@ -38,11 +45,10 @@ class Resource:
         return self.__bone_rune
 
     def set_bone_rune(self, value):
-        if isinstance(value, int) and value >= self.MIN_QUANTITY:
+        if self.validate_resource(value):
             self.__bone_rune = value
             return self.__bone_rune
         else:
-            print("invalid bone rune quantity")
             return None
 
     bone_rune = property(get_bone_rune)
@@ -51,24 +57,21 @@ class Resource:
         return self.__flesh_rune
 
     def set_flesh_rune(self, value):
-        if isinstance(value, int) and value >= self.MIN_QUANTITY:
+        if self.validate_resource(value):
             self.__flesh_rune = value
             return self.__flesh_rune
         else:
-            print("invalid flesh rune quantity")
             return None
-
     flesh_rune = property(get_flesh_rune)
 
     def get_ectoplasm(self):
         return self.__ectoplasm
 
     def set_ectoplasm(self, value):
-        if isinstance(value, int) and value >= self.MIN_QUANTITY:
+        if self.validate_resource(value):
             self.__ectoplasm = value
             return self.__ectoplasm
         else:
-            print("invalid ectoplasm quantity")
             return None
 
     ectoplasm = property(get_ectoplasm)
