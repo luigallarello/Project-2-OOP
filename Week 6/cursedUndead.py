@@ -7,3 +7,6 @@ class CursedUndead(Undead):
     def command(self):
         base = super().command()
         return f'{base} The cursed undead has risen.'
+
+    def combat_style(self):
+        return f'Channeling dark, supernatural curses to strike from beyond the grave!'

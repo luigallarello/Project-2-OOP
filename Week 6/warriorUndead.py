@@ -7,3 +7,6 @@ class WarriorUndead(Undead):
     def command(self):
         base = super().command()
         return f'{base} weapon rased, charging with power {self.power}.'
+
+    def combat_style(self):
+        return f'Using direct martial arts, the old fashioned way!'

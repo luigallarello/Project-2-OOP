@@ -1,11 +1,10 @@
 from resource import Resource
-from undead import Undead
 
 class SummoningRitual:
-    def __init__(self, ritual_name, undead_name, starting_health, starting_power,
+    def __init__(self, ritual_name, summon_class, starting_health, starting_power,
                  necrotic_cost=0, spirit_cost=0, bone_cost=0, flesh_cost=0, ectoplasm_cost=0):
         self.__ritual_name = ritual_name
-        self.__undead_name = undead_name
+        self.__summon_class = summon_class
         self.__starting_health = starting_health
         self.__starting_power = starting_power
         self.__necrotic_cost = necrotic_cost
@@ -29,12 +28,6 @@ class SummoningRitual:
         return self.__ritual_name
 
     ritual_name = property(get_ritual_name)
-
-
-    def get_undead_name(self):
-        return self.__undead_name
-        
-    undead_name = property(get_undead_name)
 
 
     def get_starting_health(self):
@@ -68,8 +61,13 @@ class SummoningRitual:
 
     def get_flesh_cost(self):
         return self.__flesh_cost
-                
+
     flesh_cost = property(get_flesh_cost)
+
+    def get_summon_class(self):
+        return self.__summon_class
+
+    summon_class = property(get_summon_class)
 
     def check_ritual(self, resource):
         if isinstance(resource, Resource):
@@ -105,14 +103,19 @@ class SummoningRitual:
             print("invalid resource object")
             return False
 
-    def create_undead(self, unit_id, resource):
-            return Undead(unit_id, self.undead_name, self.starting_health, self.starting_power)
-        
+    def create_summon(self, unit_id):
+        return self.summon_class(unit_id)
 
 
-ritual = SummoningRitual("Undead Skeleton Warrior", "Skeleton Warrior", 20, 10, bone_cost=5, ectoplasm_cost=3)
-ritual_1 = SummoningRitual("Vengeful Ghost", "Vengeful Ghost", 20, 10, spirit_cost=5, ectoplasm_cost=3)
-ritual_2 = SummoningRitual("Putrid Zombie", "Putrid Zombie", 20, 10, flesh_cost=5, ectoplasm_cost=3)
-ritual_3 = SummoningRitual("Phantom Guardian", "Phantom Guardian", 20, 10, spirit_cost=7, ectoplasm_cost=3)
+if __name__ == '__main__':
+    from skeletonWarrior import SkeletonWarrior
+    from vengefulGhost import VengefulGhost
+    from putridZombie import PutridZombie
+    from phantomGuardian import PhantomGuardian
+
+    ritual = SummoningRitual("Undead Skeleton Warrior", SkeletonWarrior, SkeletonWarrior.MIN_HEALTH, SkeletonWarrior.MIN_POWER, bone_cost=5, ectoplasm_cost=3)
+    ritual_1 = SummoningRitual("Vengeful Ghost", VengefulGhost, VengefulGhost.MIN_HEALTH, VengefulGhost.MIN_POWER, spirit_cost=5, ectoplasm_cost=3)
+    ritual_2 = SummoningRitual("Putrid Zombie", PutridZombie, PutridZombie.MIN_HEALTH, PutridZombie.MIN_POWER, flesh_cost=5, ectoplasm_cost=3)
+    ritual_3 = SummoningRitual("Phantom Guardian", PhantomGuardian, PhantomGuardian.MIN_HEALTH, PhantomGuardian.MIN_POWER, spirit_cost=7, ectoplasm_cost=3)
 
 
