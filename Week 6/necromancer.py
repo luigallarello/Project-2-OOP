@@ -42,7 +42,7 @@ class Necromancer():
             return None
 
         ritual.consume_resources(self.__resource)
-        new_undead = ritual.create_summon(self.__next_id)
+        new_undead = ritual.create_undead(self.__next_id)  
         self.__undead_collection.append(new_undead)
         self.__next_id += 1
         return new_undead

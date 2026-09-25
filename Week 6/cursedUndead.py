@@ -9,4 +9,4 @@ class CursedUndead(Undead):
         return f'{base} The cursed undead has risen.'
 
     def combat_style(self):
-        return f'Channeling dark, supernatural curses to strike from beyond the grave!'
+        return f'Cursed combat currently in use'
